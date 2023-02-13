@@ -1,0 +1,27 @@
+.blocktext {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5em;
+    width: 80%
+}
+.txt{
+    position: relative;
+    font-size: 24px;
+    color: #635e5e;
+}
+.cursor{
+    color: #00CC00;
+}
+a{
+    text-underline-mode: none;
+    font-size: 16px;
+    color: darkgreen;
+}
+a.intext{
+    text-underline-mode: none;
+    font-size: 24px;
+    color: #540ad5;
+}
+t{
+    color: #95aab6;
+}
