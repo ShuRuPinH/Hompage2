@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/t")
 public class RestForTest {
 
     String temp = "<!DOCTYPE html>\n" +
@@ -59,15 +58,7 @@ public class RestForTest {
             "  </body>\n" +
             "</html>";
 
-    @GetMapping
-    public ResponseEntity answer() {
-        return ResponseEntity.ok(new Page("jkjk","kjkjk","<img src=\"../pics/funny.gif\" alt=\"Человек и пароход\">" +
-                "<p>normal</p>" +
-                "   <p id=\"text\">text</p>\n" +
-                "    <p id=\"ways\">ways</p>").toHtmlPage());
-    }
-
-    @GetMapping("1")
+    @GetMapping("10101")
     public ResponseEntity answer1() {
         return ResponseEntity.ok(temp);
     }

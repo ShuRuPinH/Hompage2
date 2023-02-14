@@ -1,10 +1,47 @@
 package in.shurup.utils;
+
+import in.shurup.model.Page;
 import in.shurup.model.Way;
+
 import java.util.List;
 
-public class TagAndScriptGenerator {
+public class HtmlPageGenerator {
 
-    public static String[] generate(List<Way> ways) {
+    public static String getHtmlPage(Page page) {
+
+        var ways = generate(page.getWays());
+        var text = page.getText();
+
+        return "<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
+                "<head>\n" +
+                "    <meta charset=\"UTF-8\">\n" +
+                "    <title>shurup.in</title>\n" +
+                "    <link rel=\"shortcut icon\" href=\"favicons/icon.ico\"/>\n" +
+                "    <link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/style.css\">\n" +
+                "</head>\n" +
+                "<body>" +
+                "<div class=\"blocktext\">\n" +
+                "    <p id=\"text\"></p>\n" +
+                "    <p id=\"ways\"></p>\n" +
+                "</div>\n" +
+                "\n" +
+                "<script src=\"../js/main.js\" type=\"text/javascript\"></script>\n" +
+                "<script type=\"text/javascript\">\n" +
+                "    setTextAndTarget(" +
+                // text
+                "'"+text+"', " +
+                // ways
+                "'" + ways[0] + "');\n" +
+                "    go();\n" +
+                // scripts for ways
+                ways[1] + "\n" +
+                "</script>\n" +
+                "</body>\n" +
+                "</html>";
+    }
+
+    private static String[] generate(List<Way> ways) {
         StringBuilder tags = new StringBuilder();
         StringBuilder scrypt = new StringBuilder()
                 .append("\nfunction logKey(e) {")
