@@ -30,7 +30,7 @@ public class HtmlPageGenerator {
                 "<script type=\"text/javascript\">\n" +
                 "    setTextAndTarget(" +
                 // text
-                "'"+text+"', " +
+                "`"+text+"`, " +
                 // ways
                 "'" + ways[0] + "');\n" +
                 "    go();\n" +

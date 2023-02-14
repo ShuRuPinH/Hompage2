@@ -1,5 +1,6 @@
 package in.shurup.utils;
 
+import org.json.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
@@ -15,11 +16,11 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.util.TimerTask;
 
 public class Jokes {
     static Document doc;
     static NodeList nodeList;
+
 
     static int cnt;
 
@@ -74,36 +75,18 @@ public class Jokes {
                 .method("GET", HttpRequest.BodyPublishers.noBody())
                 .build();
         HttpResponse<String> response = null;
+
         try {
             response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);
         }
 
-        return response.body() + "<br><hr><br>" + value;
-    }
+        // Serialize response
+        JSONObject obj = new JSONObject(response.body());
+        String translation = obj.getJSONObject("responseData").getString("translatedText");
 
-    public static void start() {
-        init();
-        System.out.println("timer");
-        java.util.Timer timer = new java.util.Timer("TimeR");
-        try {
-            TimerTask time = new TimerTask() {
-                public void run() {
-                    make();
-                }
-            };
-            timer.schedule(time, 2000, 1 * 30 * 1000l);
-        } catch (Exception e) {
-            System.out.println("TIMER ERROR");
-            e.printStackTrace();
-        }
-    }
-
-    public static void main(String[] args) {
-        for (int j = 0; j < 10; j++) {
-            System.out.println(make());
-        }
+        return translation + "<br><hr><br>" + value;
     }
 }
 

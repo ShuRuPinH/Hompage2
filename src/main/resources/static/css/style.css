@@ -25,3 +25,7 @@ a.intext{
 t{
     color: #95aab6;
 }
+err{
+    font-weight: bold;
+    color: #7d4d45;
+}

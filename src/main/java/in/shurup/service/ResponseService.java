@@ -46,4 +46,8 @@ public class ResponseService {
                 new Way("https://www.google.com/", "no", "0/n"))) :
                 new Page("Do you know what you want?<br><t>Вы знаете, что вы хотите?</t>", List.of(new Way()));
     }
+
+    public Page processErr(String var) {
+        throw new RuntimeException("For test forever!");
+    }
 }

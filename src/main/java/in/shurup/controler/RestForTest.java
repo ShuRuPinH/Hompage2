@@ -1,15 +1,19 @@
 package in.shurup.controler;
 
 import in.shurup.model.Page;
+import in.shurup.service.ResponseService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@AllArgsConstructor
 @RestController
 public class RestForTest {
 
-    String temp = "<!DOCTYPE html>\n" +
+    private ResponseService responseService;
+    final String temp = "<!DOCTYPE html>\n" +
             "<html lang=\"ru\">\n" +
             "  <head>\n" +
             "    <meta charset=\"utf-8\">\n" +
@@ -61,6 +65,11 @@ public class RestForTest {
     @GetMapping("10101")
     public ResponseEntity answer1() {
         return ResponseEntity.ok(temp);
+    }
+
+    @GetMapping("err")
+    public ResponseEntity answerErr() {
+        return ResponseEntity.ok(responseService.processErr("hjhj"));
     }
 }
 
